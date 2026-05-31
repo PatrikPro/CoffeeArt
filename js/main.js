@@ -37,17 +37,32 @@
         }, 350);
     }
 
-    window.addEventListener('scene:ready', finishLoader);
-    window.addEventListener('scene:error', finishLoader);
-    // Safety net: if three.js never loads (e.g. CDN blocked), reveal CSS fallback
-    setTimeout(() => {
-        if (!loaderDone) {
-            $('#home') && $('#home').classList.add('no-webgl');
+    /* Hero video drives the loader; degrade gracefully to the poster frame. */
+    const heroVideo = $('#heroVideo');
+    const heroSection = $('#home');
+    function holdStill() { heroSection && heroSection.classList.add('is-still'); }
+
+    if (heroVideo) {
+        if (reduceMotion) {
+            holdStill();
+            heroVideo.removeAttribute('autoplay');
+            heroVideo.pause();
             finishLoader();
+        } else {
+            heroVideo.addEventListener('loadeddata', finishLoader, { once: true });
+            heroVideo.addEventListener('canplay', finishLoader, { once: true });
+            heroVideo.addEventListener('error', () => { holdStill(); finishLoader(); }, { once: true });
+            // Some browsers need an explicit kick; if autoplay is blocked the poster shows.
+            const p = heroVideo.play();
+            if (p && typeof p.catch === 'function') p.catch(holdStill);
         }
-    }, 4500);
-    // Absolute fallback in case events are missed
-    window.addEventListener('load', () => setTimeout(finishLoader, 1500));
+    } else {
+        finishLoader();
+    }
+
+    // Safety nets: never let the loader hang.
+    setTimeout(finishLoader, 4500);
+    window.addEventListener('load', () => setTimeout(finishLoader, 800));
 
     /* ================================================================
        CUSTOM CURSOR

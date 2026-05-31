@@ -351,12 +351,37 @@ body.cursor-ready a, body.cursor-ready button { cursor: none; }
         linear-gradient(160deg, var(--espresso) 0%, #2a1812 45%, #1f120c 100%);
     color: var(--foam);
 }
-.hero__canvas {
+/* Looping video background + poster fallback */
+.hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: #1a0f0a url("../assets/hero-poster.jpg") center/cover no-repeat;
+}
+.hero__video {
     position: absolute;
     inset: 0;
     width: 100%; height: 100%;
-    z-index: 1;
-    touch-action: pan-y;
+    object-fit: cover;
+    /* subtle warmth + slow drift so the loop feels less mechanical */
+    filter: saturate(1.05) contrast(1.03) brightness(0.92);
+    animation: heroPan 32s ease-in-out infinite alternate;
+}
+/* Darkening scrim — heavier on the left where the headline sits */
+.hero__scrim {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(95deg,
+            rgba(20, 12, 8, 0.9) 0%,
+            rgba(20, 12, 8, 0.66) 38%,
+            rgba(20, 12, 8, 0.32) 70%,
+            rgba(26, 15, 10, 0.5) 100%),
+        linear-gradient(0deg, rgba(20, 12, 8, 0.7) 0%, transparent 38%);
+}
+@keyframes heroPan {
+    from { transform: scale(1.06) translate3d(-1.2%, -0.6%, 0); }
+    to   { transform: scale(1.12) translate3d(1.2%, 0.6%, 0); }
 }
 /* warm vignette + light leak */
 .hero::after {
@@ -455,68 +480,8 @@ body.cursor-ready a, body.cursor-ready button { cursor: none; }
 }
 .hero__scroll-text { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; }
 
-.hero__drag-hint {
-    position: absolute;
-    bottom: 2.4rem; right: clamp(1.2rem, 5vw, 4rem);
-    z-index: 3;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    color: rgba(224, 184, 120, 0.7);
-    opacity: 0;
-    animation: hintIn 1s var(--ease) 2.5s forwards, floatY 3s ease-in-out 3.5s infinite;
-}
-@keyframes hintIn { to { opacity: 1; } }
-
-/* CSS fallback cup (only if WebGL fails) */
-.hero__fallback {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    display: none;
-    place-content: center;
-    perspective: 900px;
-}
-.hero.no-webgl .hero__fallback { display: grid; }
-.hero.no-webgl .hero__canvas { display: none; }
-.fallback-cup { position: relative; animation: floatY 4s ease-in-out infinite; transform-style: preserve-3d; }
-.fallback-cup__body {
-    width: 200px; height: 170px;
-    background: linear-gradient(120deg, var(--cream), #fff, var(--latte));
-    border-radius: 14px 14px 70px 70px;
-    box-shadow: inset -28px -10px 50px rgba(74,44,29,0.25), var(--shadow-lg);
-    position: relative;
-}
-.fallback-cup__body::before {
-    content: ""; position: absolute;
-    top: 14px; left: 14px; right: 14px; height: 34px;
-    background: radial-gradient(ellipse at center, var(--bean), var(--roast));
-    border-radius: 50%;
-    box-shadow: inset 0 4px 10px rgba(0,0,0,0.5);
-}
-.fallback-cup__handle {
-    position: absolute; top: 48px; right: -52px;
-    width: 60px; height: 80px;
-    border: 18px solid var(--cream);
-    border-left: none;
-    border-radius: 0 40px 40px 0;
-}
-.fallback-cup__saucer {
-    width: 280px; height: 30px;
-    background: linear-gradient(var(--latte), var(--cream));
-    border-radius: 50%;
-    margin: -6px auto 0;
-    box-shadow: var(--shadow-md);
-}
-.fallback-cup__steam { position: absolute; top: -60px; left: 0; right: 0; display: flex; justify-content: center; gap: 26px; }
-.fallback-cup__steam span {
-    width: 8px; height: 60px;
-    background: linear-gradient(transparent, rgba(255,255,255,0.5));
-    border-radius: 50%;
-    filter: blur(3px);
-    animation: steam 3s ease-in-out infinite;
-}
-.fallback-cup__steam span:nth-child(2) { animation-delay: 0.8s; }
-.fallback-cup__steam span:nth-child(3) { animation-delay: 1.6s; }
+/* Pause the loop + hold a still frame for reduced-motion / blocked autoplay */
+.hero.is-still .hero__video { animation: none; }
 
 /* =====================================================================
    MARQUEE
@@ -1038,7 +1003,6 @@ body.cursor-ready a, body.cursor-ready button { cursor: none; }
 
     .hero__stats { gap: 1.6rem; }
     .story__list { grid-template-columns: 1fr; }
-    .hero__drag-hint { display: none; }
 }
 
 @media (max-width: 480px) {

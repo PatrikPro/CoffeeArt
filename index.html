@@ -15,17 +15,6 @@
     />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-
-    <!-- Three.js r160 via ES-module import map. If the CDN is unreachable,
-         the hero automatically falls back to an animated pure-CSS cup. -->
-    <script type="importmap">
-    {
-        "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-        }
-    }
-    </script>
 </head>
 <body class="is-loading">
     <!-- ============ LOADING SCREEN ============ -->
@@ -76,15 +65,17 @@
     <main>
         <!-- ============ HERO ============ -->
         <section class="hero" id="home">
-            <canvas class="hero__canvas" id="coffeeCanvas" aria-hidden="true"></canvas>
-            <!-- CSS fallback shown if WebGL/Three.js is unavailable -->
-            <div class="hero__fallback" id="heroFallback" aria-hidden="true">
-                <div class="fallback-cup">
-                    <div class="fallback-cup__steam"><span></span><span></span><span></span></div>
-                    <div class="fallback-cup__body"></div>
-                    <div class="fallback-cup__handle"></div>
-                    <div class="fallback-cup__saucer"></div>
-                </div>
+            <!-- Looping roast footage. Poster shows instantly + as a fallback. -->
+            <div class="hero__media" aria-hidden="true">
+                <video
+                    class="hero__video"
+                    id="heroVideo"
+                    autoplay muted loop playsinline preload="auto"
+                    poster="assets/hero-poster.jpg"
+                >
+                    <source src="assets/hero.mp4" type="video/mp4" />
+                </video>
+                <div class="hero__scrim"></div>
             </div>
 
             <div class="hero__content">
@@ -113,8 +104,6 @@
                 <span class="hero__scroll-dot"></span>
                 <span class="hero__scroll-text">Scroll</span>
             </a>
-
-            <div class="hero__drag-hint" id="dragHint" aria-hidden="true">↻ drag to spin the cup</div>
         </section>
 
         <!-- ============ MARQUEE ============ -->
@@ -367,7 +356,7 @@
         </div>
         <div class="footer__bottom">
             <p>© <span id="year">2026</span> CafeArt Roastery. Brewed with care.</p>
-            <p class="footer__credit">Crafted with ☕ &amp; <span>three.js</span></p>
+            <p class="footer__credit">Crafted with ☕ &amp; <span>real roast footage</span></p>
         </div>
     </footer>
 
@@ -375,7 +364,6 @@
     <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
 
     <!-- Scripts -->
-    <script type="module" src="js/scene.js"></script>
     <script src="js/main.js" defer></script>
 </body>
 </html>
