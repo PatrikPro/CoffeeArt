@@ -196,32 +196,32 @@
        MENU — data → cards with 3D tilt + filtering
        ================================================================ */
     const MENU = [
-        { name: 'Origin Espresso', price: '$3.5', cat: 'espresso', tag: 'House', art: '☕',
-          bg: 'radial-gradient(circle at 35% 30%, #6f4e37, #1d0f08)', strength: 5,
+        { name: 'Origin Espresso', price: '$3.5', cat: 'espresso', tag: 'House',
+          img: 'assets/img/menu-espresso.jpg', strength: 5,
           note: 'Bold · 28s pull', desc: 'A syrupy single-origin shot with notes of cocoa and toasted hazelnut.' },
-        { name: 'Velvet Flat White', price: '$4.5', cat: 'espresso', tag: 'Loved', art: '🤍',
-          bg: 'radial-gradient(circle at 60% 40%, #e0c4a0, #6f4e37)', strength: 3,
+        { name: 'Velvet Flat White', price: '$4.5', cat: 'espresso', tag: 'Loved',
+          img: 'assets/img/menu-flatwhite.jpg', strength: 3,
           note: 'Silky · 5oz', desc: 'Double ristretto under a paper-thin layer of microfoam. Pure balance.' },
-        { name: 'Honey Cortado', price: '$4.0', cat: 'espresso', tag: null, art: '🍯',
-          bg: 'radial-gradient(circle at 40% 30%, #e0b878, #b87333)', strength: 3,
+        { name: 'Honey Cortado', price: '$4.0', cat: 'espresso', tag: null,
+          img: 'assets/img/menu-cortado.jpg', strength: 3,
           note: 'Sweet · 4oz', desc: 'Equal parts espresso and steamed milk, finished with raw wildflower honey.' },
-        { name: 'Slow Pour-Over', price: '$5.0', cat: 'brew', tag: 'Single Origin', art: '⏳',
-          bg: 'radial-gradient(circle at 50% 35%, #c8956d, #4a2c1d)', strength: 2,
+        { name: 'Slow Pour-Over', price: '$5.0', cat: 'brew', tag: 'Single Origin',
+          img: 'assets/img/menu-pourover.jpg', strength: 2,
           note: 'Bright · V60', desc: 'Hand-poured over four minutes to coax out delicate floral and citrus tones.' },
-        { name: 'Siphon Reserve', price: '$6.5', cat: 'brew', tag: 'Rare', art: '🔬',
-          bg: 'radial-gradient(circle at 45% 45%, #b87333, #2c1810)', strength: 3,
+        { name: 'Siphon Reserve', price: '$6.5', cat: 'brew', tag: 'Rare',
+          img: 'assets/img/menu-siphon.jpg', strength: 3,
           note: 'Clean · Theatrical', desc: 'Vacuum-brewed tableside for a crystal-clear, tea-like cup. A whole experience.' },
-        { name: 'Nitro Cold Brew', price: '$5.5', cat: 'cold', tag: 'On Tap', art: '🌊',
-          bg: 'radial-gradient(circle at 50% 60%, #4a2c1d, #1a0f0a)', strength: 4,
+        { name: 'Nitro Cold Brew', price: '$5.5', cat: 'cold', tag: 'On Tap',
+          img: 'assets/img/menu-nitro.jpg', strength: 4,
           note: 'Creamy · Cascading', desc: '20-hour steeped and charged with nitrogen for a stout-like, velvety head.' },
-        { name: 'Iced Maple Latte', price: '$5.0', cat: 'cold', tag: null, art: '🍁',
-          bg: 'radial-gradient(circle at 40% 40%, #e0b878, #8a5a2b)', strength: 2,
+        { name: 'Iced Maple Latte', price: '$5.0', cat: 'cold', tag: null,
+          img: 'assets/img/menu-iced.jpg', strength: 2,
           note: 'Smooth · 12oz', desc: 'Cold-pressed espresso, oat milk, and a thread of dark maple over clear ice.' },
-        { name: 'The Painter', price: '$6.0', cat: 'signature', tag: 'Signature', art: '🎨',
-          bg: 'radial-gradient(circle at 50% 30%, #f0cd8e, #b87333)', strength: 4,
+        { name: 'The Painter', price: '$6.0', cat: 'signature', tag: 'Signature',
+          img: 'assets/img/menu-painter.jpg', strength: 4,
           note: "Barista's choice", desc: 'A rotating latte-art masterpiece — house blend, a secret spice, and a steady hand.' },
-        { name: 'Midnight Mocha', price: '$5.5', cat: 'signature', tag: 'Signature', art: '🌙',
-          bg: 'radial-gradient(circle at 45% 35%, #4a2c1d, #1d0f08)', strength: 4,
+        { name: 'Midnight Mocha', price: '$5.5', cat: 'signature', tag: 'Signature',
+          img: 'assets/img/menu-mocha.jpg', strength: 4,
           note: '70% dark', desc: 'Single-origin espresso, stone-ground dark chocolate, a pinch of sea salt.' },
     ];
 
@@ -236,7 +236,7 @@
             <article class="menu-card reveal" data-cat="${d.cat}" style="--d:${(i % 3) * 0.08}s">
                 <div class="menu-card__glow"></div>
                 ${d.tag ? `<span class="menu-card__tag">${d.tag}</span>` : ''}
-                <div class="menu-card__art" style="background:${d.bg}">${d.art}</div>
+                <div class="menu-card__art" style="background-image:url('${d.img}')" role="img" aria-label="${d.name}"></div>
                 <div class="menu-card__head">
                     <h3 class="menu-card__name">${d.name}</h3>
                     <span class="menu-card__price">${d.price}</span>
