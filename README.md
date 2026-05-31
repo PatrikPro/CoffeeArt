@@ -2,53 +2,80 @@
 
 A cinematic, single-page website for an artisan coffee roastery. Built with
 **vanilla HTML, CSS, and JavaScript** — no build step, no framework — fronted by
-a full-bleed **looping video hero** of roasting coffee.
+a full-bleed **looping video hero** and real coffee photography throughout.
 
-![CafeArt](assets/favicon.svg)
+![CafeArt](assets/og-image.jpg)
 
 ---
 
 ## ✨ Highlights
 
-- **Cinematic video hero** — full-screen, auto-playing, muted loop of roasting
-  beans with a slow Ken-Burns drift, a warm colour grade, and a left-weighted
-  scrim that keeps the headline crisp over the footage.
-  - 🖼️ A **poster frame** loads instantly and stands in if the video is still
-    buffering, autoplay is blocked, or the file can't be fetched — the hero is
-    never blank.
-  - 🎬 Honours `prefers-reduced-motion`: the loop holds a still frame instead.
-- **Rich motion throughout** — animated loader, scroll-reveal sections,
-  count-up statistics, an infinite flavour marquee, and a custom cursor.
-- **3D-tilt menu** — nine drinks rendered as cards that tilt in 3D (CSS
-  transforms) under the cursor with a moving specular glow, plus live category
-  filtering.
-- **More sections** — brand story with parallax imagery, a four-step "craft"
-  process, a tilting gallery, an auto-rotating testimonial carousel, and a
-  validated reservation form.
-- **Considerate by default** — fully responsive, keyboard-reachable,
-  `prefers-reduced-motion` aware, and touch-friendly (custom cursor and tilt
-  effects disable themselves on touch / no-hover devices).
+- **Cinematic video hero** — full-screen autoplay/muted/looping roast footage
+  with a Ken-Burns drift, warm grade, and a scrim that keeps the headline crisp.
+  A poster frame loads instantly and stands in if the video can't play. A
+  lighter **720p source** is served to phones; reduced-motion holds a still.
+- **Real photography** across the story, menu (9 drinks), gallery, and a
+  panorama behind the craft steps.
+- **Fast & accessible images** — every photo is a lazy-loaded `<picture>` with a
+  **WebP** source + JPEG fallback, explicit dimensions (no layout shift), and
+  alt text.
+- **Gallery lightbox** — click/tap or keyboard (Enter) to enlarge; arrow keys /
+  on-screen arrows to browse; Esc or backdrop to close.
+- **Rich motion** — animated loader, scroll reveals, count-up stats, flavour
+  marquee, custom cursor, 3D-tilt menu cards with live category filtering, and a
+  rotating testimonial carousel with monogram avatars + an "as featured in" strip.
+- **Working reservation form** — progressive-enhancement submit wired for
+  **Formspree _or_ Netlify Forms** (with honeypot), graceful demo mode until you
+  connect a backend.
+- **Found & shareable** — Open Graph/Twitter cards with a generated share image,
+  `CafeOrCoffeeShop` **JSON-LD** structured data (hours, address, geo, menu),
+  canonical URL, `robots.txt`, and `sitemap.xml`.
+- **Installable PWA** — web manifest + maskable icons + `apple-touch-icon`.
+- **Considerate** — responsive, keyboard-reachable (skip link, focus styles),
+  `prefers-reduced-motion` aware, touch-friendly.
 
 ---
 
 ## 🚀 Running it
 
-There's no build step. Serve the folder over HTTP (autoplay and relative asset
+No build step. Serve the folder over HTTP (autoplay, the lightbox, and relative
 paths behave most reliably that way):
 
 ```bash
-# from the project root, pick any static server:
-python3 -m http.server 8000
-#   or
-npx serve .
+python3 -m http.server 8000     # or: npx serve .
 ```
 
 Then open <http://localhost:8000>.
 
-### Deploying
+---
 
-It's a static site — drop the whole folder onto **GitHub Pages**, **Netlify**,
-**Vercel**, **Cloudflare Pages**, or any static host. No configuration needed.
+## ✅ Before you launch (config checklist)
+
+1. **Domain** — replace `https://cafeart.coffee/` in `index.html` (canonical,
+   Open Graph, Twitter, JSON-LD), `robots.txt`, and `sitemap.xml` with your URL.
+2. **Photos** — the demo imagery is **AI-generated**. Swap `assets/img/*` and the
+   hero video/poster for your own or licensed shots before publishing.
+3. **Reservation form** — pick one:
+   - **Formspree:** set the form's `action="https://formspree.io/f/XXXX"` in
+     `index.html` (replace `your-form-id`). That's it — JS submits via fetch.
+   - **Netlify:** deploy on Netlify; the `data-netlify="true"` + hidden
+     `form-name` are already in place. Submissions appear in your Netlify dashboard.
+   - Until configured, the form runs in **demo mode** (friendly confirmation, no send).
+4. **Map** — the Visit section embeds Google Maps by address query; update the
+   `src` in the `.visit__map` iframe to your exact location (or paste an embed).
+5. **Details** — address, hours, phone (`tel:`), email (`mailto:`), and social
+   links live in the Visit section + footer.
+
+---
+
+## 📦 Deploying
+
+It's a fully static site — host the folder anywhere.
+
+- **GitHub Pages (included):** a workflow at `.github/workflows/pages.yml`
+  deploys on push. In the repo, set **Settings → Pages → Source: GitHub Actions**.
+- **Netlify / Vercel / Cloudflare Pages:** "Import repository", framework =
+  *None/Static*, build command = *(none)*, publish directory = `/`.
 
 ---
 
@@ -56,30 +83,18 @@ It's a static site — drop the whole folder onto **GitHub Pages**, **Netlify**,
 
 ```
 CafeArt/
-├── index.html                 # markup for every section
-├── css/
-│   └── style.css              # design tokens, layout, all CSS animations
-├── js/
-│   └── main.js                # UI: loader, cursor, nav, reveals, menu, form…
+├── index.html                  # all sections + head (SEO/OG/JSON-LD/PWA)
+├── manifest.webmanifest        # PWA manifest
+├── robots.txt · sitemap.xml    # crawler hints
+├── css/style.css               # design tokens, layout, animations, lightbox
+├── js/main.js                  # loader, nav, reveals, menu, lightbox, form…
+├── .github/workflows/pages.yml # GitHub Pages deploy
 └── assets/
-    ├── hero.mp4               # looping hero footage (H.264, web-optimised)
-    ├── hero-poster.jpg        # first-frame poster / fallback
-    └── favicon.svg
+    ├── hero.mp4 · hero-720.mp4 · hero-poster.jpg   # hero video + poster
+    ├── og-image.jpg            # 1200×630 social share image
+    ├── favicon.svg · apple-touch-icon.png · icon-192/512.png
+    └── img/                    # story / gallery / menu photos (.jpg + .webp)
 ```
-
----
-
-## 🎨 Design notes
-
-- **Palette** — espresso, mocha, caramel, latte, and gold, defined as CSS custom
-  properties in `:root` so the whole theme is tunable from one place.
-- **Type** — *Playfair Display* (display serif), *Poppins* (body), and *Caveat*
-  (handwritten accents), loaded from Google Fonts with full system-font
-  fallbacks so the site still reads well if fonts are blocked.
-- **The hero video** is encoded as a web-optimised H.264 MP4 with `+faststart`
-  (so playback can begin before the whole file downloads), audio stripped, and a
-  matching JPG poster. The `<video>` is `muted`/`playsinline` so mobile browsers
-  autoplay it. A CSS scrim + vignette sit between the footage and the text.
 
 ---
 
@@ -88,36 +103,32 @@ CafeArt/
 | Want to change… | Where |
 | --- | --- |
 | Colours / fonts / radii | CSS variables at the top of `css/style.css` |
-| Hero footage | replace `assets/hero.mp4` + `assets/hero-poster.jpg` |
-| Scrim / colour grade | `.hero__scrim` / `.hero__video` in `css/style.css` |
-| Menu items & prices | the `MENU` array in `js/main.js` |
+| Hero footage | replace `assets/hero.mp4`, `assets/hero-720.mp4`, `assets/hero-poster.jpg` |
+| Menu items, prices, photos | the `MENU` array in `js/main.js` |
+| Gallery photos / captions | the `#galleryGrid` figures in `index.html` |
 | Testimonials | the `.quote` blocks in `index.html` |
-| Hours / address / contact | the `.visit__details` list in `index.html` |
+| Press logos | the `.press__logos` list in `index.html` |
 
-### Swapping the hero video
-
-Any landscape clip works. To match the optimised encode used here:
+### Media recipes (ffmpeg)
 
 ```bash
-# compress for web (no audio, fast-start, ~CRF 27)
-ffmpeg -i your-clip.mp4 -map 0:v:0 -c:v libx264 -profile:v high \
-  -crf 27 -preset slow -pix_fmt yuv420p -movflags +faststart assets/hero.mp4
-
-# grab a poster frame (~2s in)
-ffmpeg -ss 2 -i your-clip.mp4 -frames:v 1 -q:v 3 assets/hero-poster.jpg
+# Hero video (desktop + mobile) — no audio, fast-start
+ffmpeg -i clip.mp4 -map 0:v:0 -c:v libx264 -crf 27 -preset slow -pix_fmt yuv420p -movflags +faststart assets/hero.mp4
+ffmpeg -i clip.mp4 -map 0:v:0 -vf scale=1280:720 -c:v libx264 -crf 28 -preset slow -pix_fmt yuv420p -movflags +faststart assets/hero-720.mp4
+ffmpeg -ss 2 -i clip.mp4 -frames:v 1 -q:v 3 assets/hero-poster.jpg
+# WebP for a photo
+ffmpeg -i photo.jpg -c:v libwebp -quality 80 photo.webp
 ```
 
 ---
 
 ## 📦 Third-party
 
-- **Hero footage** — a looping clip of roasting coffee beans, encoded with
-  `ffmpeg`. Swap in your own (see above).
-- **Google Fonts** — loaded at runtime; the site degrades gracefully without them.
-
-The rest of the imagery is rendered with CSS gradients and emoji placeholders so
-the project ships with (almost) zero binary assets — swap in your own photography
-by setting `background-image` on the `.story__img` and `.gallery__item` rules.
+- **Hero footage & photos** — demo media (roast footage + AI-generated stills);
+  replace with your own/licensed assets before publishing.
+- **Google Fonts** — Playfair Display, Poppins, Caveat; the site degrades to
+  system fonts gracefully.
+- **Google Maps** — keyless address embed in the Visit section.
 
 ---
 

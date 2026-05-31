@@ -236,7 +236,12 @@
             <article class="menu-card reveal" data-cat="${d.cat}" style="--d:${(i % 3) * 0.08}s">
                 <div class="menu-card__glow"></div>
                 ${d.tag ? `<span class="menu-card__tag">${d.tag}</span>` : ''}
-                <div class="menu-card__art" style="background-image:url('${d.img}')" role="img" aria-label="${d.name}"></div>
+                <div class="menu-card__art">
+                    <picture>
+                        <source srcset="${d.img.replace('.jpg', '.webp')}" type="image/webp" />
+                        <img src="${d.img}" loading="lazy" decoding="async" alt="${d.name}" />
+                    </picture>
+                </div>
                 <div class="menu-card__head">
                     <h3 class="menu-card__name">${d.name}</h3>
                     <span class="menu-card__price">${d.price}</span>
@@ -373,26 +378,112 @@
     const form = $('#reserveForm');
     const note = $('#formNote');
     if (form) {
-        // sensible min date = today
         const dateInput = $('#rdate', form);
-        if (dateInput) dateInput.min = new Date().toISOString().split('T')[0];
+        const setMin = () => { if (dateInput) dateInput.min = new Date().toISOString().split('T')[0]; };
+        setMin();
 
-        form.addEventListener('submit', (e) => {
+        const say = (msg, isError) => {
+            note.textContent = msg;
+            note.classList.toggle('is-error', !!isError);
+        };
+
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            if (form.elements['bot-field'] && form.elements['bot-field'].value) return; // honeypot
             const name = $('#rname', form).value.trim();
             const email = $('#remail', form).value.trim();
             const date = $('#rdate', form).value;
             const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
             if (!name || !emailOk || !date) {
-                note.textContent = 'Please add your name, a valid email, and a date. ☕';
-                note.classList.add('is-error');
+                say('Please add your name, a valid email, and a date. ☕', true);
                 return;
             }
-            note.classList.remove('is-error');
-            note.textContent = `Thanks, ${name.split(' ')[0]}! We'll confirm your table at hello@cafeart.coffee shortly.`;
-            form.reset();
-            if (dateInput) dateInput.min = new Date().toISOString().split('T')[0];
+
+            const first = name.split(' ')[0];
+            const endpoint = form.getAttribute('action') || '';
+            const configured = endpoint && !endpoint.includes('your-form-id');
+            const btn = $('button[type="submit"]', form);
+
+            // Not wired to a backend yet → friendly simulated confirmation (demo mode)
+            if (!configured) {
+                say(`Thanks, ${first}! We'll confirm your table at hello@cafeart.coffee shortly.`);
+                form.reset(); setMin();
+                return;
+            }
+
+            // Real submission — works with Formspree or Netlify Forms
+            if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = 'Sending…'; }
+            say('Sending your request…');
+            try {
+                const res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(new FormData(form)).toString(),
+                });
+                if (res.ok) {
+                    say(`Thanks, ${first}! Your reservation request is in — we'll be in touch shortly.`);
+                    form.reset(); setMin();
+                } else {
+                    say('Hmm, that didn\'t go through. Email us at hello@cafeart.coffee and we\'ll sort it.', true);
+                }
+            } catch (_) {
+                say('Network hiccup — please try again, or email hello@cafeart.coffee.', true);
+            } finally {
+                if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || 'Request Reservation'; }
+            }
+        });
+    }
+
+    /* ================================================================
+       GALLERY LIGHTBOX
+       ================================================================ */
+    const lightbox = $('#lightbox');
+    if (lightbox) {
+        const lbImg = $('#lbImg'), lbCap = $('#lbCap');
+        const items = $$('#galleryGrid .gallery__item');
+        const shots = items.map((fig) => {
+            const img = $('img', fig);
+            return { src: img ? img.currentSrc || img.src : '', cap: ($('span', fig) || {}).textContent || '', alt: img ? img.alt : '' };
+        });
+        let cur = 0;
+        let lastFocus = null;
+
+        const render = () => {
+            const s = shots[cur];
+            lbImg.src = s.src; lbImg.alt = s.alt; lbCap.textContent = s.cap;
+        };
+        const open = (i) => {
+            cur = i; render();
+            lightbox.classList.add('is-open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            lastFocus = document.activeElement;
+            $('#lbClose').focus();
+        };
+        const close = () => {
+            lightbox.classList.remove('is-open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            if (lastFocus) lastFocus.focus();
+        };
+        const step = (d) => { cur = (cur + d + shots.length) % shots.length; render(); };
+
+        items.forEach((fig, i) => {
+            fig.addEventListener('click', () => open(i));
+            fig.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+            });
+        });
+        $('#lbClose').addEventListener('click', close);
+        $('#lbPrev').addEventListener('click', (e) => { e.stopPropagation(); step(-1); });
+        $('#lbNext').addEventListener('click', (e) => { e.stopPropagation(); step(1); });
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('is-open')) return;
+            if (e.key === 'Escape') close();
+            else if (e.key === 'ArrowLeft') step(-1);
+            else if (e.key === 'ArrowRight') step(1);
         });
     }
 
