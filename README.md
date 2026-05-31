@@ -31,6 +31,10 @@ a full-bleed **looping video hero** and real coffee photography throughout.
   `CafeOrCoffeeShop` **JSON-LD** structured data (hours, address, geo, menu),
   canonical URL, `robots.txt`, and `sitemap.xml`.
 - **Installable PWA** — web manifest + maskable icons + `apple-touch-icon`.
+- **Bilingual (English / Čeština)** — an EN/CS toggle in the nav translates the
+  whole page (including the JS-built menu and form messages), remembers your
+  choice, and auto-detects Czech browsers. Adding more languages is one object
+  in `js/i18n.js`.
 - **Considerate** — responsive, keyboard-reachable (skip link, focus styles),
   `prefers-reduced-motion` aware, touch-friendly.
 
@@ -87,6 +91,7 @@ CafeArt/
 ├── manifest.webmanifest        # PWA manifest
 ├── robots.txt · sitemap.xml    # crawler hints
 ├── css/style.css               # design tokens, layout, animations, lightbox
+├── js/i18n.js                  # EN/CS translations + language switcher
 ├── js/main.js                  # loader, nav, reveals, menu, lightbox, form…
 ├── .github/workflows/pages.yml # GitHub Pages deploy
 └── assets/
@@ -108,6 +113,7 @@ CafeArt/
 | Gallery photos / captions | the `#galleryGrid` figures in `index.html` |
 | Testimonials | the `.quote` blocks in `index.html` |
 | Press logos | the `.press__logos` list in `index.html` |
+| Translations / add a language | the `I18N` object in `js/i18n.js` (mark new text with `data-i18n`) |
 
 ### Media recipes (ffmpeg)
 

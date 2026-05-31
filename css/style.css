@@ -330,6 +330,32 @@ body.cursor-ready a, body.cursor-ready button { cursor: none; }
 .nav__cta { --pad: 0.6rem 1.4rem; font-size: 0.9rem; }
 .nav.is-light .nav__cta { color: var(--foam); }
 
+/* Language toggle */
+.lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 100px;
+    border: 1.5px solid var(--latte);
+    background: rgba(255, 255, 255, 0.5);
+    margin-left: auto;
+}
+.lang__btn {
+    padding: 0.32rem 0.7rem;
+    border-radius: 100px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    color: var(--mocha);
+    transition: background 0.3s var(--ease), color 0.3s;
+}
+.lang__btn.is-active { background: var(--bean); color: var(--foam); }
+.lang__btn:not(.is-active):hover { color: var(--caramel); }
+.nav.is-light .lang { border-color: rgba(247, 243, 232, 0.45); background: rgba(255, 255, 255, 0.1); }
+.nav.is-light .lang__btn { color: var(--foam); }
+.nav.is-light .lang__btn.is-active { background: var(--foam); color: var(--bean); }
+
 .nav__burger {
     display: none;
     flex-direction: column;

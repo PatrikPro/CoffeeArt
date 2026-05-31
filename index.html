@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#1a0f0a" />
-    <meta name="description" content="CafeArt — where every cup is a masterpiece. An artisan coffee roastery serving slow-roasted single origins, sculpted latte art, and a space designed to make you linger." />
+    <meta name="description" data-i18n-attr="content:meta.desc" content="CafeArt — where every cup is a masterpiece. An artisan coffee roastery serving slow-roasted single origins, sculpted latte art, and a space designed to make you linger." />
     <meta name="robots" content="index, follow" />
-    <title>CafeArt · Where Every Cup Is a Masterpiece</title>
+    <title data-i18n="meta.title">CafeArt · Where Every Cup Is a Masterpiece</title>
 
     <!-- Canonical (update to your live domain before launch) -->
     <link rel="canonical" href="https://cafeart.coffee/" />
@@ -77,7 +77,7 @@
     </script>
 </head>
 <body class="is-loading">
-    <a class="skip-link" href="#home">Skip to content</a>
+    <a class="skip-link" href="#home" data-i18n="a11y.skip">Skip to content</a>
 
     <!-- ============ LOADING SCREEN ============ -->
     <div class="loader" id="loader" aria-hidden="true">
@@ -85,7 +85,7 @@
             <div class="loader__fill"></div>
             <div class="loader__steam"><span></span><span></span><span></span></div>
         </div>
-        <p class="loader__text">Brewing your experience<span class="loader__dots">...</span></p>
+        <p class="loader__text"><span data-i18n="loader.text">Brewing your experience</span><span class="loader__dots">...</span></p>
         <div class="loader__bar"><span id="loaderBar"></span></div>
     </div>
 
@@ -98,7 +98,7 @@
 
     <!-- ============ NAVIGATION ============ -->
     <header class="nav" id="nav">
-        <a href="#home" class="nav__brand" aria-label="CafeArt home">
+        <a href="#home" class="nav__brand" data-i18n-attr="aria-label:nav.brandAria" aria-label="CafeArt home">
             <span class="nav__logo" aria-hidden="true">
                 <svg viewBox="0 0 32 32" width="34" height="34">
                     <path d="M6 12h17a5 5 0 0 1 0 10h-2M6 12v7a6 6 0 0 0 6 6h5a6 6 0 0 0 6-6v-7H6Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -108,18 +108,23 @@
             <span class="nav__name">Cafe<em>Art</em></span>
         </a>
 
-        <nav class="nav__menu" id="navMenu" aria-label="Primary">
-            <a href="#home" class="nav__link">Home</a>
-            <a href="#story" class="nav__link">Story</a>
-            <a href="#menu" class="nav__link">Menu</a>
-            <a href="#craft" class="nav__link">Craft</a>
-            <a href="#gallery" class="nav__link">Gallery</a>
-            <a href="#visit" class="nav__link">Visit</a>
+        <nav class="nav__menu" id="navMenu" data-i18n-attr="aria-label:nav.primary" aria-label="Primary">
+            <a href="#home" class="nav__link" data-i18n="nav.home">Home</a>
+            <a href="#story" class="nav__link" data-i18n="nav.story">Story</a>
+            <a href="#menu" class="nav__link" data-i18n="nav.menu">Menu</a>
+            <a href="#craft" class="nav__link" data-i18n="nav.craft">Craft</a>
+            <a href="#gallery" class="nav__link" data-i18n="nav.gallery">Gallery</a>
+            <a href="#visit" class="nav__link" data-i18n="nav.visit">Visit</a>
         </nav>
 
-        <a href="#visit" class="btn btn--ghost nav__cta">Reserve a Table</a>
+        <div class="lang" id="langToggle" role="group" aria-label="Language / Jazyk">
+            <button type="button" class="lang__btn is-active" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang__btn" data-lang="cs" aria-pressed="false">CS</button>
+        </div>
 
-        <button class="nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+        <a href="#visit" class="btn btn--ghost nav__cta" data-i18n="nav.reserve">Reserve a Table</a>
+
+        <button class="nav__burger" id="navBurger" data-i18n-attr="aria-label:nav.burger" aria-label="Toggle menu" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
     </header>
@@ -142,30 +147,30 @@
             </div>
 
             <div class="hero__content">
-                <p class="hero__eyebrow reveal">✦ Artisan Roastery · Est. 2014 ✦</p>
+                <p class="hero__eyebrow reveal" data-i18n="hero.eyebrow">✦ Artisan Roastery · Est. 2014 ✦</p>
                 <h1 class="hero__title">
-                    <span class="reveal" style="--d:.05s">Where Every</span>
-                    <span class="reveal hero__title--accent" style="--d:.15s">Cup Is a</span>
-                    <span class="reveal" style="--d:.25s">Masterpiece</span>
+                    <span class="reveal" style="--d:.05s" data-i18n="hero.title1">Where Every</span>
+                    <span class="reveal hero__title--accent" style="--d:.15s" data-i18n="hero.title2">Cup Is a</span>
+                    <span class="reveal" style="--d:.25s" data-i18n="hero.title3">Masterpiece</span>
                 </h1>
-                <p class="hero__sub reveal" style="--d:.4s">
+                <p class="hero__sub reveal" style="--d:.4s" data-i18n-html="hero.sub">
                     Slow-roasted single origins, sculpted latte art, and a space designed
                     to make you linger. Welcome to <strong>CafeArt</strong>.
                 </p>
                 <div class="hero__actions reveal" style="--d:.55s">
-                    <a href="#menu" class="btn btn--solid">Explore the Menu</a>
-                    <a href="#story" class="btn btn--ghost">Our Story →</a>
+                    <a href="#menu" class="btn btn--solid" data-i18n="hero.cta1">Explore the Menu</a>
+                    <a href="#story" class="btn btn--ghost" data-i18n="hero.cta2">Our Story →</a>
                 </div>
                 <div class="hero__stats reveal" style="--d:.7s">
-                    <div class="stat"><span class="stat__num" data-count="38">0</span><span class="stat__label">Single Origins</span></div>
-                    <div class="stat"><span class="stat__num" data-count="12">0</span><span class="stat__label">Years Roasting</span></div>
-                    <div class="stat"><span class="stat__num" data-count="240" data-suffix="k">0</span><span class="stat__label">Cups Poured</span></div>
+                    <div class="stat"><span class="stat__num" data-count="38">0</span><span class="stat__label" data-i18n="hero.stat1">Single Origins</span></div>
+                    <div class="stat"><span class="stat__num" data-count="12">0</span><span class="stat__label" data-i18n="hero.stat2">Years Roasting</span></div>
+                    <div class="stat"><span class="stat__num" data-count="240" data-suffix="k">0</span><span class="stat__label" data-i18n="hero.stat3">Cups Poured</span></div>
                 </div>
             </div>
 
-            <a href="#story" class="hero__scroll" aria-label="Scroll to story">
+            <a href="#story" class="hero__scroll" data-i18n-attr="aria-label:hero.scrollAria" aria-label="Scroll to story">
                 <span class="hero__scroll-dot"></span>
-                <span class="hero__scroll-text">Scroll</span>
+                <span class="hero__scroll-text" data-i18n="hero.scroll">Scroll</span>
             </a>
         </section>
 
@@ -173,10 +178,10 @@
         <div class="marquee" aria-hidden="true">
             <div class="marquee__track">
                 <span>Espresso</span><span class="dot">●</span><span>Single Origin</span><span class="dot">●</span>
-                <span>Hand Roasted</span><span class="dot">●</span><span>Latte Art</span><span class="dot">●</span>
+                <span data-i18n="marquee.handRoasted">Hand Roasted</span><span class="dot">●</span><span>Latte Art</span><span class="dot">●</span>
                 <span>Cold Brew</span><span class="dot">●</span><span>Pour Over</span><span class="dot">●</span>
                 <span>Espresso</span><span class="dot">●</span><span>Single Origin</span><span class="dot">●</span>
-                <span>Hand Roasted</span><span class="dot">●</span><span>Latte Art</span><span class="dot">●</span>
+                <span data-i18n="marquee.handRoasted">Hand Roasted</span><span class="dot">●</span><span>Latte Art</span><span class="dot">●</span>
                 <span>Cold Brew</span><span class="dot">●</span><span>Pour Over</span><span class="dot">●</span>
             </div>
         </div>
@@ -188,7 +193,7 @@
                     <picture>
                         <source srcset="assets/img/story-main.webp" type="image/webp" />
                         <img class="story__img" src="assets/img/story-main.jpg" width="967" height="1200"
-                             loading="lazy" decoding="async"
+                             loading="lazy" decoding="async" data-i18n-attr="alt:story.img1Alt"
                              alt="A barista pouring steamed milk to finish a latte at the CafeArt bar" />
                     </picture>
                 </div>
@@ -196,57 +201,57 @@
                     <picture>
                         <source srcset="assets/img/story-beans.webp" type="image/webp" />
                         <img class="story__img" src="assets/img/story-beans.jpg" width="1100" height="1100"
-                             loading="lazy" decoding="async"
+                             loading="lazy" decoding="async" data-i18n-attr="alt:story.img2Alt"
                              alt="A scoop of fresh green coffee cherries from the harvest" />
                     </picture>
                 </div>
                 <div class="story__badge">
                     <span class="story__badge-num">100%</span>
-                    <span class="story__badge-text">Ethically Sourced</span>
+                    <span class="story__badge-text" data-i18n="story.badge">Ethically Sourced</span>
                 </div>
             </div>
             <div class="story__text">
-                <p class="section__eyebrow reveal">— Our Story</p>
-                <h2 class="section__title reveal" style="--d:.1s">
+                <p class="section__eyebrow reveal" data-i18n="story.eyebrow">— Our Story</p>
+                <h2 class="section__title reveal" style="--d:.1s" data-i18n-html="story.title">
                     From the highlands<br />to your hands.
                 </h2>
-                <p class="reveal" style="--d:.2s">
+                <p class="reveal" style="--d:.2s" data-i18n="story.p1">
                     CafeArt began in a tiny corner roastery with a single drum roaster and an
                     obsession: treat coffee like a craft, not a commodity. A decade later,
                     we still source every bean directly from growers who share our love of the land.
                 </p>
-                <p class="reveal" style="--d:.3s">
+                <p class="reveal" style="--d:.3s" data-i18n="story.p2">
                     Each batch is roasted in small lots, rested to perfection, and pulled by
                     baristas who consider the pour an art form. The result is a cup with a
                     signature — yours.
                 </p>
                 <ul class="story__list reveal" style="--d:.4s">
-                    <li>Small-batch drum roasting</li>
-                    <li>Direct-trade relationships</li>
-                    <li>Signature latte artistry</li>
-                    <li>Zero-waste kitchen</li>
+                    <li data-i18n="story.list1">Small-batch drum roasting</li>
+                    <li data-i18n="story.list2">Direct-trade relationships</li>
+                    <li data-i18n="story.list3">Signature latte artistry</li>
+                    <li data-i18n="story.list4">Zero-waste kitchen</li>
                 </ul>
-                <a href="#craft" class="btn btn--solid reveal" style="--d:.5s">See How We Craft It</a>
+                <a href="#craft" class="btn btn--solid reveal" style="--d:.5s" data-i18n="story.cta">See How We Craft It</a>
             </div>
         </section>
 
         <!-- ============ MENU ============ -->
         <section class="menu" id="menu">
             <div class="section__head">
-                <p class="section__eyebrow reveal">— The Menu</p>
-                <h2 class="section__title reveal" style="--d:.1s">Crafted to Order</h2>
-                <p class="section__lead reveal" style="--d:.2s">
+                <p class="section__eyebrow reveal" data-i18n="menu.eyebrow">— The Menu</p>
+                <h2 class="section__title reveal" style="--d:.1s" data-i18n="menu.title">Crafted to Order</h2>
+                <p class="section__lead reveal" style="--d:.2s" data-i18n="menu.lead">
                     Tilt a card to see it come alive. Every drink is made with house-roasted
                     beans and a whole lot of heart.
                 </p>
             </div>
 
             <div class="menu__filters reveal" style="--d:.3s" id="menuFilters">
-                <button class="chip is-active" data-filter="all">All</button>
-                <button class="chip" data-filter="espresso">Espresso</button>
-                <button class="chip" data-filter="brew">Slow Brew</button>
-                <button class="chip" data-filter="cold">Cold</button>
-                <button class="chip" data-filter="signature">Signature</button>
+                <button class="chip is-active" data-filter="all" data-i18n="menu.filterAll">All</button>
+                <button class="chip" data-filter="espresso" data-i18n="menu.filterEspresso">Espresso</button>
+                <button class="chip" data-filter="brew" data-i18n="menu.filterBrew">Slow Brew</button>
+                <button class="chip" data-filter="cold" data-i18n="menu.filterCold">Cold</button>
+                <button class="chip" data-filter="signature" data-i18n="menu.filterSignature">Signature</button>
             </div>
 
             <div class="menu__grid" id="menuGrid">
@@ -257,8 +262,8 @@
         <!-- ============ CRAFT / PROCESS ============ -->
         <section class="craft" id="craft">
             <div class="craft__head">
-                <p class="section__eyebrow reveal">— The Craft</p>
-                <h2 class="section__title reveal" style="--d:.1s">Four Steps to the Perfect Cup</h2>
+                <p class="section__eyebrow reveal" data-i18n="craft.eyebrow">— The Craft</p>
+                <h2 class="section__title reveal" style="--d:.1s" data-i18n="craft.title">Four Steps to the Perfect Cup</h2>
             </div>
             <div class="craft__steps">
                 <article class="craft-step reveal" style="--d:.05s">
@@ -268,8 +273,8 @@
                             <path d="M24 6C13.5 6 13.5 42 24 42S34.5 6 24 6Z"/><path d="M6 24h36"/><path d="M9 14h30M9 34h30"/><circle cx="24" cy="24" r="18"/>
                         </svg>
                     </div>
-                    <h3>Source</h3>
-                    <p>We travel to origin to taste, select, and hand-pick lots from farms we trust.</p>
+                    <h3 data-i18n="craft.s1t">Source</h3>
+                    <p data-i18n="craft.s1d">We travel to origin to taste, select, and hand-pick lots from farms we trust.</p>
                 </article>
                 <article class="craft-step reveal" style="--d:.15s">
                     <span class="craft-step__no">02</span>
@@ -278,8 +283,8 @@
                             <path d="M26 4c1 7-4 9-7 13-4 5-6 9-6 14a13 13 0 0 0 26 0c0-4-2-8-5-11 1 4-1 6-3 6 2-8-5-13-5-22Z"/>
                         </svg>
                     </div>
-                    <h3>Roast</h3>
-                    <p>Small batches roasted on a vintage drum, profiled to unlock each bean's character.</p>
+                    <h3 data-i18n="craft.s2t">Roast</h3>
+                    <p data-i18n="craft.s2d">Small batches roasted on a vintage drum, profiled to unlock each bean's character.</p>
                 </article>
                 <article class="craft-step reveal" style="--d:.25s">
                     <span class="craft-step__no">03</span>
@@ -288,8 +293,8 @@
                             <path d="M13 6h22M13 42h22"/><path d="M15 6c0 10 18 12 18 18S15 26 15 42"/><path d="M33 6c0 10-18 12-18 18s18 8 18 18"/>
                         </svg>
                     </div>
-                    <h3>Rest</h3>
-                    <p>Beans rest for days so the flavors settle, then we grind only to order.</p>
+                    <h3 data-i18n="craft.s3t">Rest</h3>
+                    <p data-i18n="craft.s3d">Beans rest for days so the flavors settle, then we grind only to order.</p>
                 </article>
                 <article class="craft-step reveal" style="--d:.35s">
                     <span class="craft-step__no">04</span>
@@ -298,8 +303,8 @@
                             <path d="M10 16h22v6a11 11 0 0 1-11 11h0a11 11 0 0 1-11-11v-6Z"/><path d="M32 18h4a4 4 0 0 1 0 8h-4"/><path d="M16 8c-1 1.5-1 3 0 4.5M22 8c-1 1.5-1 3 0 4.5"/>
                         </svg>
                     </div>
-                    <h3>Pour</h3>
-                    <p>Our baristas extract with precision and finish with art you'll hate to drink.</p>
+                    <h3 data-i18n="craft.s4t">Pour</h3>
+                    <p data-i18n="craft.s4d">Our baristas extract with precision and finish with art you'll hate to drink.</p>
                 </article>
             </div>
         </section>
@@ -307,37 +312,37 @@
         <!-- ============ GALLERY ============ -->
         <section class="gallery" id="gallery">
             <div class="section__head">
-                <p class="section__eyebrow reveal">— The Space</p>
-                <h2 class="section__title reveal" style="--d:.1s">A Place to Linger</h2>
-                <p class="section__lead reveal" style="--d:.2s">
+                <p class="section__eyebrow reveal" data-i18n="gallery.eyebrow">— The Space</p>
+                <h2 class="section__title reveal" style="--d:.1s" data-i18n="gallery.title">A Place to Linger</h2>
+                <p class="section__lead reveal" style="--d:.2s" data-i18n="gallery.lead">
                     Warm light, worn timber, and the gentle hum of the grinder. Step inside.
                 </p>
             </div>
             <div class="gallery__grid" id="galleryGrid">
-                <figure class="gallery__item gallery__item--tall reveal" data-tilt tabindex="0" role="button" aria-label="Enlarge: The Roastery">
+                <figure class="gallery__item gallery__item--tall reveal" data-tilt tabindex="0" role="button" data-i18n-attr="aria-label:gallery.aria1" aria-label="Enlarge: The Roastery">
                     <picture><source srcset="assets/img/gallery-roastery.webp" type="image/webp" />
-                        <img src="assets/img/gallery-roastery.jpg" width="805" height="1200" loading="lazy" decoding="async" alt="The roastery floor with the drum roaster and tall windows" /></picture>
-                    <span>The Roastery</span>
+                        <img src="assets/img/gallery-roastery.jpg" width="805" height="1200" loading="lazy" decoding="async" data-i18n-attr="alt:gallery.cap1" alt="The roastery floor with the drum roaster and tall windows" /></picture>
+                    <span data-i18n="gallery.cap1">The Roastery</span>
                 </figure>
-                <figure class="gallery__item reveal" style="--d:.1s" data-tilt tabindex="0" role="button" aria-label="Enlarge: Pour Bar">
+                <figure class="gallery__item reveal" style="--d:.1s" data-tilt tabindex="0" role="button" data-i18n-attr="aria-label:gallery.aria2" aria-label="Enlarge: Pour Bar">
                     <picture><source srcset="assets/img/gallery-pourbar.webp" type="image/webp" />
-                        <img src="assets/img/gallery-pourbar.jpg" width="1200" height="1200" loading="lazy" decoding="async" alt="The espresso pour bar with a barista at the machine" /></picture>
-                    <span>Pour Bar</span>
+                        <img src="assets/img/gallery-pourbar.jpg" width="1200" height="1200" loading="lazy" decoding="async" data-i18n-attr="alt:gallery.cap2" alt="The espresso pour bar with a barista at the machine" /></picture>
+                    <span data-i18n="gallery.cap2">Pour Bar</span>
                 </figure>
-                <figure class="gallery__item reveal" style="--d:.2s" data-tilt tabindex="0" role="button" aria-label="Enlarge: Window Seats">
+                <figure class="gallery__item reveal" style="--d:.2s" data-tilt tabindex="0" role="button" data-i18n-attr="aria-label:gallery.aria3" aria-label="Enlarge: Window Seats">
                     <picture><source srcset="assets/img/gallery-windows.webp" type="image/webp" />
-                        <img src="assets/img/gallery-windows.jpg" width="805" height="1200" loading="lazy" decoding="async" alt="Window seating bathed in warm afternoon light" /></picture>
-                    <span>Window Seats</span>
+                        <img src="assets/img/gallery-windows.jpg" width="805" height="1200" loading="lazy" decoding="async" data-i18n-attr="alt:gallery.cap3" alt="Window seating bathed in warm afternoon light" /></picture>
+                    <span data-i18n="gallery.cap3">Window Seats</span>
                 </figure>
-                <figure class="gallery__item gallery__item--wide reveal" style="--d:.1s" data-tilt tabindex="0" role="button" aria-label="Enlarge: The Long Table">
+                <figure class="gallery__item gallery__item--wide reveal" style="--d:.1s" data-tilt tabindex="0" role="button" data-i18n-attr="aria-label:gallery.aria4" aria-label="Enlarge: The Long Table">
                     <picture><source srcset="assets/img/gallery-table.webp" type="image/webp" />
-                        <img src="assets/img/gallery-table.jpg" width="1400" height="781" loading="lazy" decoding="async" alt="The long communal table filled with guests" /></picture>
-                    <span>The Long Table</span>
+                        <img src="assets/img/gallery-table.jpg" width="1400" height="781" loading="lazy" decoding="async" data-i18n-attr="alt:gallery.cap4" alt="The long communal table filled with guests" /></picture>
+                    <span data-i18n="gallery.cap4">The Long Table</span>
                 </figure>
-                <figure class="gallery__item reveal" style="--d:.2s" data-tilt tabindex="0" role="button" aria-label="Enlarge: The Mezzanine">
+                <figure class="gallery__item reveal" style="--d:.2s" data-tilt tabindex="0" role="button" data-i18n-attr="aria-label:gallery.aria5" aria-label="Enlarge: The Mezzanine">
                     <picture><source srcset="assets/img/gallery-mezzanine.webp" type="image/webp" />
-                        <img src="assets/img/gallery-mezzanine.jpg" width="805" height="1200" loading="lazy" decoding="async" alt="The mezzanine seating above the café floor" /></picture>
-                    <span>The Mezzanine</span>
+                        <img src="assets/img/gallery-mezzanine.jpg" width="805" height="1200" loading="lazy" decoding="async" data-i18n-attr="alt:gallery.cap5" alt="The mezzanine seating above the café floor" /></picture>
+                    <span data-i18n="gallery.cap5">The Mezzanine</span>
                 </figure>
             </div>
         </section>
@@ -345,34 +350,34 @@
         <!-- ============ TESTIMONIALS ============ -->
         <section class="quotes" id="quotes">
             <div class="quotes__inner">
-                <p class="section__eyebrow reveal">— Kind Words</p>
+                <p class="section__eyebrow reveal" data-i18n="quotes.eyebrow">— Kind Words</p>
                 <div class="quotes__stage" id="quotesStage">
                     <blockquote class="quote is-active">
-                        <p>"The flat white here ruined every other coffee for me. Worth every minute of the queue."</p>
+                        <p data-i18n="quote1.text">The flat white here ruined every other coffee for me. Worth every minute of the queue.</p>
                         <footer>
                             <span class="quote__avatar" aria-hidden="true">ML</span>
-                            <span class="quote__who">Mara L.<span>regular since 2017</span></span>
+                            <span class="quote__who">Mara L.<span data-i18n="quote1.role">regular since 2017</span></span>
                         </footer>
                     </blockquote>
                     <blockquote class="quote">
-                        <p>"It's not a café, it's a meditation. The light, the smell, the pour — pure art."</p>
+                        <p data-i18n="quote2.text">It's not a café, it's a meditation. The light, the smell, the pour — pure art.</p>
                         <footer>
                             <span class="quote__avatar" aria-hidden="true">DR</span>
-                            <span class="quote__who">Daniel R.<span>local photographer</span></span>
+                            <span class="quote__who">Daniel R.<span data-i18n="quote2.role">local photographer</span></span>
                         </footer>
                     </blockquote>
                     <blockquote class="quote">
-                        <p>"I came for the latte art and stayed for three hours. Best cold brew in the city, full stop."</p>
+                        <p data-i18n="quote3.text">I came for the latte art and stayed for three hours. Best cold brew in the city, full stop.</p>
                         <footer>
                             <span class="quote__avatar" aria-hidden="true">PS</span>
-                            <span class="quote__who">Priya S.<span>writer &amp; wanderer</span></span>
+                            <span class="quote__who">Priya S.<span data-i18n="quote3.role">writer &amp; wanderer</span></span>
                         </footer>
                     </blockquote>
                 </div>
                 <div class="quotes__dots" id="quotesDots" aria-hidden="true"></div>
 
                 <div class="press reveal">
-                    <span class="press__label">As featured in</span>
+                    <span class="press__label" data-i18n="press.label">As featured in</span>
                     <ul class="press__logos">
                         <li>The Bean Times</li>
                         <li>Roast Weekly</li>
@@ -388,9 +393,9 @@
         <section class="visit" id="visit">
             <div class="visit__card reveal">
                 <div class="visit__info">
-                    <p class="section__eyebrow">— Come Say Hi</p>
-                    <h2 class="section__title">Visit the Roastery</h2>
-                    <p class="visit__lead">
+                    <p class="section__eyebrow" data-i18n="visit.eyebrow">— Come Say Hi</p>
+                    <h2 class="section__title" data-i18n="visit.title">Visit the Roastery</h2>
+                    <p class="visit__lead" data-i18n="visit.lead">
                         Pull up a stool at the pour bar, grab a window seat, or take a bag of
                         fresh beans home. We'd love to share a cup with you.
                     </p>
@@ -398,17 +403,17 @@
                     <ul class="visit__details">
                         <li>
                             <span class="visit__ico" aria-hidden="true">📍</span>
-                            <div><strong>Find us</strong><br />
+                            <div><strong data-i18n="visit.findus">Find us</strong><br />
                                 <a href="https://maps.google.com/?q=42+Roaster's+Lane+Old+Town+Quarter" target="_blank" rel="noopener">42 Roaster's Lane, Old Town Quarter</a>
                             </div>
                         </li>
                         <li>
                             <span class="visit__ico" aria-hidden="true">🕗</span>
-                            <div><strong>Open daily</strong><br />Mon–Fri 7am–7pm · Sat–Sun 8am–6pm</div>
+                            <div><strong data-i18n="visit.hours">Open daily</strong><br /><span data-i18n="visit.hoursVal">Mon–Fri 7am–7pm · Sat–Sun 8am–6pm</span></div>
                         </li>
                         <li>
                             <span class="visit__ico" aria-hidden="true">✉️</span>
-                            <div><strong>Say hello</strong><br />
+                            <div><strong data-i18n="visit.hello">Say hello</strong><br />
                                 <a href="mailto:hello@cafeart.coffee">hello@cafeart.coffee</a> ·
                                 <a href="tel:+15550142230">(555) 014-2230</a>
                             </div>
@@ -418,51 +423,52 @@
                     <div class="visit__socials">
                         <a href="#" aria-label="Instagram" class="social">Instagram</a>
                         <a href="#" aria-label="Twitter" class="social">Twitter</a>
-                        <a href="#" aria-label="Spotify playlist" class="social">Our Playlist</a>
+                        <a href="#" aria-label="Spotify playlist" class="social" data-i18n="visit.playlist">Our Playlist</a>
                     </div>
                 </div>
 
                 <form class="visit__form" id="reserveForm" name="reservation" method="POST"
                       action="https://formspree.io/f/your-form-id"
                       data-netlify="true" netlify-honeypot="bot-field" novalidate>
-                    <h3>Reserve a Table</h3>
+                    <h3 data-i18n="form.title">Reserve a Table</h3>
                     <input type="hidden" name="form-name" value="reservation" />
                     <p hidden aria-hidden="true"><label>Leave this empty <input name="bot-field" /></label></p>
                     <div class="field">
                         <input type="text" id="rname" name="name" required placeholder=" " autocomplete="name" />
-                        <label for="rname">Your name</label>
+                        <label for="rname" data-i18n="form.name">Your name</label>
                     </div>
                     <div class="field">
                         <input type="email" id="remail" name="email" required placeholder=" " autocomplete="email" />
-                        <label for="remail">Email address</label>
+                        <label for="remail" data-i18n="form.email">Email address</label>
                     </div>
                     <div class="field field--row">
                         <div class="field">
                             <input type="date" id="rdate" name="date" required placeholder=" " />
-                            <label for="rdate" class="label--static">Date</label>
+                            <label for="rdate" class="label--static" data-i18n="form.date">Date</label>
                         </div>
                         <div class="field">
                             <select id="rguests" name="guests" required>
-                                <option value="2">2 guests</option>
-                                <option value="1">1 guest</option>
-                                <option value="3">3 guests</option>
-                                <option value="4">4 guests</option>
-                                <option value="5">5+ guests</option>
+                                <option value="2" data-i18n="form.g2">2 guests</option>
+                                <option value="1" data-i18n="form.g1">1 guest</option>
+                                <option value="3" data-i18n="form.g3">3 guests</option>
+                                <option value="4" data-i18n="form.g4">4 guests</option>
+                                <option value="5" data-i18n="form.g5">5+ guests</option>
                             </select>
-                            <label for="rguests" class="label--static">Party</label>
+                            <label for="rguests" class="label--static" data-i18n="form.party">Party</label>
                         </div>
                     </div>
                     <div class="field">
                         <textarea id="rnote" name="note" rows="2" placeholder=" "></textarea>
-                        <label for="rnote">Anything we should know? (optional)</label>
+                        <label for="rnote" data-i18n="form.note">Anything we should know? (optional)</label>
                     </div>
-                    <button type="submit" class="btn btn--solid btn--full">Request Reservation</button>
+                    <button type="submit" class="btn btn--solid btn--full" data-i18n="form.submit">Request Reservation</button>
                     <p class="visit__form-note" id="formNote" role="status"></p>
                 </form>
             </div>
 
             <div class="visit__map reveal">
                 <iframe
+                    data-i18n-attr="title:visit.mapTitle"
                     title="Map showing the location of CafeArt roastery"
                     src="https://maps.google.com/maps?q=42%20Roaster's%20Lane%20Old%20Town%20Quarter&t=&z=14&ie=UTF8&iwloc=&output=embed"
                     loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -475,49 +481,50 @@
         <div class="footer__top">
             <div class="footer__brand">
                 <span class="nav__name">Cafe<em>Art</em></span>
-                <p>Where every cup is a masterpiece. Roasted with intention, served with love.</p>
+                <p data-i18n="footer.tagline">Where every cup is a masterpiece. Roasted with intention, served with love.</p>
             </div>
             <div class="footer__cols">
                 <div>
-                    <h4>Explore</h4>
-                    <a href="#story">Our Story</a>
-                    <a href="#menu">Menu</a>
-                    <a href="#craft">The Craft</a>
-                    <a href="#gallery">Gallery</a>
+                    <h4 data-i18n="footer.c1">Explore</h4>
+                    <a href="#story" data-i18n="footer.c1a">Our Story</a>
+                    <a href="#menu" data-i18n="footer.c1b">Menu</a>
+                    <a href="#craft" data-i18n="footer.c1c">The Craft</a>
+                    <a href="#gallery" data-i18n="footer.c1d">Gallery</a>
                 </div>
                 <div>
-                    <h4>Visit</h4>
-                    <a href="#visit">Hours</a>
-                    <a href="#visit">Location</a>
-                    <a href="#visit">Reserve</a>
+                    <h4 data-i18n="footer.c2">Visit</h4>
+                    <a href="#visit" data-i18n="footer.c2a">Hours</a>
+                    <a href="#visit" data-i18n="footer.c2b">Location</a>
+                    <a href="#visit" data-i18n="footer.c2c">Reserve</a>
                 </div>
                 <div>
-                    <h4>Beans</h4>
-                    <a href="#menu">Shop Roasts</a>
-                    <a href="#craft">Subscriptions</a>
-                    <a href="#story">Wholesale</a>
+                    <h4 data-i18n="footer.c3">Beans</h4>
+                    <a href="#menu" data-i18n="footer.c3a">Shop Roasts</a>
+                    <a href="#craft" data-i18n="footer.c3b">Subscriptions</a>
+                    <a href="#story" data-i18n="footer.c3c">Wholesale</a>
                 </div>
             </div>
         </div>
         <div class="footer__bottom">
-            <p>© <span id="year">2026</span> CafeArt Roastery. Brewed with care.</p>
-            <p class="footer__credit">Crafted with ☕ &amp; <span>real roast footage</span></p>
+            <p>© <span id="year">2026</span> <span data-i18n="footer.rights">CafeArt Roastery. Brewed with care.</span></p>
+            <p class="footer__credit" data-i18n-html="footer.credit">Crafted with ☕ &amp; <span>real roast footage</span></p>
         </div>
     </footer>
 
     <!-- Back to top -->
-    <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+    <button class="to-top" id="toTop" data-i18n-attr="aria-label:a11y.toTop" aria-label="Back to top">↑</button>
 
     <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image viewer">
-        <button class="lightbox__close" id="lbClose" aria-label="Close">✕</button>
-        <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Previous image">‹</button>
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" data-i18n-attr="aria-label:lb.title" aria-label="Image viewer">
+        <button class="lightbox__close" id="lbClose" data-i18n-attr="aria-label:lb.close" aria-label="Close">✕</button>
+        <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" data-i18n-attr="aria-label:lb.prev" aria-label="Previous image">‹</button>
         <img class="lightbox__img" id="lbImg" src="" alt="" />
-        <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Next image">›</button>
+        <button class="lightbox__nav lightbox__nav--next" id="lbNext" data-i18n-attr="aria-label:lb.next" aria-label="Next image">›</button>
         <p class="lightbox__cap" id="lbCap"></p>
     </div>
 
     <!-- Scripts -->
+    <script src="js/i18n.js" defer></script>
     <script src="js/main.js" defer></script>
 </body>
 </html>
